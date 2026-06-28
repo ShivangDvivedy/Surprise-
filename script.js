@@ -533,3 +533,231 @@ I'll always be cheering for you.
 console.log("Part 3 Loaded ❤️");
 
 
+/* ==========================================
+   PART 4
+   Premium Effects
+========================================== */
+
+/* ---------- Floating Background Glow ---------- */
+
+const background = document.getElementById("background");
+
+let glow = 0;
+
+setInterval(() => {
+
+    glow += 0.5;
+
+    document.body.style.backgroundPosition =
+        glow + "% 50%";
+
+}, 60);
+
+
+/* ---------- Random Sparkles ---------- */
+
+function createSparkle() {
+
+    const sparkle = document.createElement("div");
+
+    sparkle.innerHTML = "✨";
+
+    sparkle.style.position = "fixed";
+
+    sparkle.style.left = Math.random() * 100 + "vw";
+
+    sparkle.style.top = Math.random() * 100 + "vh";
+
+    sparkle.style.fontSize =
+        (10 + Math.random() * 15) + "px";
+
+    sparkle.style.pointerEvents = "none";
+
+    sparkle.style.opacity = ".8";
+
+    sparkle.style.transition = "2s";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+
+        sparkle.style.opacity = "0";
+
+        sparkle.style.transform =
+            "translateY(-40px)";
+
+    }, 100);
+
+    setTimeout(() => {
+
+        sparkle.remove();
+
+    }, 2200);
+
+}
+
+setInterval(createSparkle, 1800);
+
+
+/* ---------- Button Ripple ---------- */
+
+document.querySelectorAll("button").forEach(button => {
+
+    button.addEventListener("click", e => {
+
+        const ripple = document.createElement("span");
+
+        ripple.style.position = "absolute";
+
+        ripple.style.width = "20px";
+
+        ripple.style.height = "20px";
+
+        ripple.style.borderRadius = "50%";
+
+        ripple.style.background =
+            "rgba(255,255,255,.4)";
+
+        ripple.style.left =
+            e.offsetX - 10 + "px";
+
+        ripple.style.top =
+            e.offsetY - 10 + "px";
+
+        ripple.style.animation =
+            "ripple .7s ease-out";
+
+        button.appendChild(ripple);
+
+        setTimeout(() => {
+
+            ripple.remove();
+
+        }, 700);
+
+    });
+
+});
+
+
+/* ---------- Time Spent ---------- */
+
+const websiteOpenedAt = Date.now();
+
+function getTimeSpent(){
+
+    return Math.floor(
+
+        (Date.now()-websiteOpenedAt)/1000
+
+    );
+
+}
+
+
+/* ---------- Browser ---------- */
+
+const browserInfo =
+navigator.userAgent;
+
+
+/* ---------- Final Summary ---------- */
+
+function showSummary(){
+
+console.log("==============");
+
+console.log("Project Surprise");
+
+console.log("Answers");
+
+console.log(userAnswers);
+
+console.log(
+
+"Time",
+
+getTimeSpent(),
+
+"seconds"
+
+);
+
+console.log(browserInfo);
+
+console.log("==============");
+
+}
+
+
+/* ---------- YES BUTTON ---------- */
+
+yesButton.addEventListener(
+
+"click",
+
+showSummary
+
+);
+
+yesButton2.addEventListener(
+
+"click",
+
+showSummary
+
+);
+
+
+/* ---------- Fake Loading ---------- */
+
+window.addEventListener(
+
+"load",
+
+()=>{
+
+const loader=document.createElement("div");
+
+loader.style.position="fixed";
+
+loader.style.left="0";
+
+loader.style.top="0";
+
+loader.style.width="100%";
+
+loader.style.height="100%";
+
+loader.style.background="#0f0c29";
+
+loader.style.display="flex";
+
+loader.style.justifyContent="center";
+
+loader.style.alignItems="center";
+
+loader.style.fontSize="28px";
+
+loader.style.zIndex="999999";
+
+loader.innerHTML="❤️";
+
+document.body.appendChild(loader);
+
+setTimeout(()=>{
+
+loader.style.transition=".8s";
+
+loader.style.opacity="0";
+
+setTimeout(()=>loader.remove(),800);
+
+},1000);
+
+});
+
+
+console.log("Part 4 Loaded ❤️");
+
+
