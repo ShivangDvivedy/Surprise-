@@ -1,13 +1,13 @@
-# Project Sushii
+Project Surprise V2
 
-This is the starter project.
+New:
+- Animated gradient
+- Floating hearts
+- Multi-screen flow
+- Glassmorphism UI
 
-Upload all files to a GitHub repository.
-Enable GitHub Pages from Settings > Pages.
-
-The next versions will add:
-- Animated story
-- Questions
+Next version:
+- Interactive questions
+- Progress bar
+- Love letter
 - Google Sheets integration
-- Confetti
-- Music
