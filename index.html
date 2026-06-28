@@ -1,33 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>For Sushii ❤️</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Sushii ❤️</title><link rel="stylesheet" href="style.css"></head><body>
 <div class="bg"></div>
-<div class="hearts"></div>
+<div class="progress"><div id="bar"></div></div>
 
-<div class="card" id="welcome">
+<section class="page active">
 <h1>Hi Sushii ❤️</h1>
-<p class="type">I made this little corner of the internet just for you...</p>
-<button id="startBtn">Begin ✨</button>
-</div>
+<p>I made something special for you.</p>
+<button onclick="next()">Begin ✨</button>
+</section>
 
-<div class="card hidden" id="page2">
-<h2>Before we continue...</h2>
-<p>Promise me you'll smile today 😊</p>
-<button id="promiseBtn">I Promise ❤️</button>
-</div>
+<section class="page">
+<h2>Promise me 😊</h2>
+<p>Smile today, eat on time and take proper rest.</p>
+<button onclick="next()">I Promise ❤️</button>
+</section>
 
-<div class="card hidden" id="page3">
-<h2>Thank you 🌸</h2>
-<p>The rest of our journey is coming soon...</p>
-<p style="opacity:.8">Version 2 is live 💖</p>
+<section class="page">
+<h2>Question 1/3</h2>
+<p>Our perfect date?</p>
+<div class="opts">
+<button onclick="pick('Sushi')">🍣 Sushi</button>
+<button onclick="pick('Coffee')">☕ Coffee</button>
+<button onclick="pick('Long Drive')">🚗 Long Drive</button>
+<button onclick="pick('Movie')">🎬 Movie</button>
 </div>
+</section>
+
+<section class="page">
+<h2>Question 2/3</h2>
+<p>What should I remind you?</p>
+<div class="opts">
+<button onclick="pick('Sleep')">😴 Sleep</button>
+<button onclick="pick('Eat')">🍽 Eat</button>
+<button onclick="pick('Smile')">😊 Smile</button>
+</div>
+</section>
+
+<section class="page">
+<h2>Question 3/3</h2>
+<p>Complete this:</p>
+<div class="opts">
+<button onclick="pick('Caring')">❤️ Caring</button>
+<button onclick="pick('Pagal')">😂 Pagal</button>
+<button onclick="pick('Sweet')">🥹 Sweet</button>
+</div>
+</section>
+
+<section class="page">
+<h1>Thank You 🌸</h1>
+<p>Version 3 Complete.</p>
+<p>Love letter and finale coming next ❤️</p>
+</section>
 
 <script src="script.js"></script>
-</body>
-</html>
+</body></html>

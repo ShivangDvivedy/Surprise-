@@ -1,57 +1,9 @@
-*{box-sizing:border-box}
-body{
-margin:0;
-font-family:Arial,sans-serif;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:linear-gradient(-45deg,#0f0c29,#302b63,#24243e,#e94057);
-background-size:400% 400%;
-animation:bg 12s ease infinite;
-color:#fff;
-}
-@keyframes bg{
-0%{background-position:0 50%}
-50%{background-position:100% 50%}
-100%{background-position:0 50%}
-}
-.card{
-position:absolute;
-width:90%;
-max-width:380px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(12px);
-padding:28px;
-border-radius:24px;
-text-align:center;
-box-shadow:0 10px 40px rgba(0,0,0,.3);
-animation:fade .8s;
-}
-.hidden{display:none}
-button{
-margin-top:15px;
-padding:14px 24px;
-border:none;
-border-radius:30px;
-font-size:17px;
-cursor:pointer;
-background:#fff;
-}
-@keyframes fade{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
-}
-.heart{
-position:absolute;
-bottom:-20px;
-font-size:22px;
-animation:float 6s linear forwards;
-}
-@keyframes float{
-to{
-transform:translateY(-120vh) rotate(360deg);
-opacity:0;
-}
-}
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:linear-gradient(135deg,#0f0c29,#302b63,#e94057);height:100vh;overflow:hidden;color:#fff}
+.progress{position:fixed;top:0;left:0;width:100%;height:6px;background:#ffffff33}
+#bar{height:100%;width:16%;background:#fff;transition:.5s}
+.page{display:none;height:100vh;padding:28px;justify-content:center;align-items:center;flex-direction:column;text-align:center}
+.page.active{display:flex;animation:f .5s}
+button{margin:8px;padding:14px 22px;border:none;border-radius:30px;font-size:18px}
+.opts{display:flex;flex-direction:column;width:min(320px,90vw)}
+.opts button{width:100%}
+@keyframes f{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
