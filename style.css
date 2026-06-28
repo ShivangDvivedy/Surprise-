@@ -514,3 +514,38 @@ padding:15px;
 }
 
 }
+
+
+@keyframes ripple{
+
+0%{
+
+transform:scale(0);
+
+opacity:.8;
+
+}
+
+100%{
+
+transform:scale(12);
+
+opacity:0;
+
+}
+
+}
+
+button{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+button span{
+
+pointer-events:none;
+
+}
