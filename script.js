@@ -58,29 +58,15 @@ function nextPage(){
 
         showPage(currentPage);
 
-        // Start music automatically after the first click
         if(currentPage === 1 && !musicPlaying){
 
-            bgMusic.currentTime = 20;
-
-            bgMusic.play().then(()=>{
-
-                musicPlaying = true;
-
-                musicButton.innerHTML = "⏸️";
-
-            }).catch(err=>{
-
-                console.log(err);
-
-            });
+            playMusicFrom20();
 
         }
 
     }
 
-}
-/* =======================================
+}/* =======================================
    Progress Bar
 ======================================= */
 
