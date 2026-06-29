@@ -1,26 +1,311 @@
-/* ===========================
-   Project Surprise ❤️
-   Made for Sushii
-=========================== */
+/* ==========================================
+   Project Surprise ❤️ | Production Style V2
+========================================== */
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{width:100%;height:100%;overflow:hidden;font-family:‘Poppins’,sans-serif;}
-body{position:relative;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e,#e94057);background-size:400%
-400%;animation:gradient 15s ease infinite;color:#fff;} @keyframes
-gradient{0%{background-position:0% 50%}50%{background-position:100%
-50%}100%{background-position:0% 50%}}
-#app{position:relative;width:100%;height:100%;}
-#hearts{position:fixed;inset:0;pointer-events:none;z-index:1;}
-.progress{position:fixed;top:0;left:0;width:100%;height:6px;background:rgba(255,255,255,.15);z-index:1000;}.progressFill{width:12%;height:100%;background:linear-gradient(90deg,#ff4b91,#ffd1e8);transition:.4s;}.page{position:absolute;inset:0;display:none;justify-content:center;align-items:center;padding:20px;z-index:5}.page.active{display:flex;animation:fade
-.5s ease}@keyframes
-fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.glass{width:min(420px,90vw);padding:32px
-24px;border-radius:28px;background:rgba(255,255,255,.12);border:1px
-solid
-rgba(255,255,255,.2);backdrop-filter:blur(18px);text-align:center;box-shadow:0
-15px 40px rgba(0,0,0,.35)}.glass
-h1{font-size:40px;margin-bottom:16px}.glass
-h2{font-size:28px;margin-bottom:14px}.glass
-p{line-height:1.7;margin-bottom:16px}.answers{display:flex;flex-direction:column;gap:12px}button{position:relative;overflow:hidden;width:100%;padding:15px;border:none;border-radius:40px;cursor:pointer;color:#fff;font-size:16px;background:linear-gradient(135deg,#ff5fa2,#ff8dc7);transition:.3s}button:hover{transform:translateY(-2px)}#musicButton{position:fixed;right:18px;top:18px;width:52px;height:52px;border-radius:50%;display:flex;justify-content:center;align-items:center;background:rgba(255,255,255,.15);backdrop-filter:blur(12px);z-index:1001}.heart{position:fixed;bottom:-30px;pointer-events:none;animation:floatUp
-6s linear forwards}@keyframes floatUp{to{transform:translateY(-120vh)
-rotate(360deg);opacity:0}}@media(max-width:480px){.glass{width:92vw;padding:26px
-20px}.glass h1{font-size:34px}.glass h2{font-size:24px}}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    position: relative;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #e94057);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    color: #fff;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==========================================
+   Navigation Bars & UI Utilities
+========================================== */
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, .15);
+    z-index: 1000;
+}
+
+.progressFill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff4b91, #ffd1e8);
+    transition: width .5s ease;
+}
+
+#musicButton {
+    position: fixed;
+    right: 18px;
+    top: 18px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, .25);
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform .3s;
+}
+
+#musicButton:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* ==========================================
+   Core Layouts & Architecture 
+========================================== */
+.page {
+    position: absolute;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .5s ease, transform .5s ease;
+}
+
+.page.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.glass {
+    width: min(420px, 90vw);
+    padding: 32px 24px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(18px);
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .35);
+}
+
+.glass h1 { font-size: 40px; margin-bottom: 16px; font-family: 'Playfair Display', serif; }
+.glass h2 { font-size: 28px; margin-bottom: 14px; }
+.glass p { line-height: 1.7; margin-bottom: 16px; font-size: 16px; }
+
+.letter {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+.letter p { text-align: left; }
+
+/* ==========================================
+   Interactives & Buttons
+========================================== */
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+button {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff5fa2, #ff8dc7);
+    box-shadow: 0 8px 20px rgba(255, 80, 150, 0.25);
+    transition: transform .3s content, box-shadow .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 80, 150, 0.45);
+}
+
+/* Button Ripple Styling */
+button span {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: rippleEffect .6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(10);
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   V2 Dynamic Slideshow Subsystem
+========================================== */
+.slideshow-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: min(450px, 95vw);
+    text-align: center;
+}
+
+#slideshowImg {
+    max-width: 100%;
+    max-height: 60vh;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    border: 2px solid rgba(255,255,255,0.2);
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.8s ease-in-out, transform 4.5s linear;
+}
+
+#slideshowImg.animate {
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+#slideshowCaption {
+    margin-top: 22px;
+    font-size: 18px;
+    font-weight: 500;
+    min-height: 28px;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#slideshowCaption.animate {
+    opacity: 1;
+}
+
+/* ==========================================
+   V2 Final Screen (Fade To Black)
+========================================== */
+#finalEnding {
+    background: #000000 !important;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    transition: background-color 2s ease;
+}
+
+.final-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.heart-pulse {
+    font-size: 65px;
+    margin-bottom: 25px;
+    animation: pulse 1.4s infinite ease-in-out;
+}
+
+.fade-in-line {
+    opacity: 0;
+    transform: translateY(15px);
+    font-size: 19px;
+    line-height: 2;
+    margin-bottom: 8px;
+    animation: finalLineFade 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.final-content p:nth-child(2) { animation-delay: 0.8s; }
+.final-content p:nth-child(3) { animation-delay: 2.2s; }
+.final-content p:nth-child(4) { animation-delay: 3.6s; }
+.signature { animation-delay: 5.0s; font-family: 'Playfair Display', serif; font-size: 24px; margin-top: 20px;}
+
+@keyframes finalLineFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* ==========================================
+   Ambient Animations Elements
+========================================== */
+.heart {
+    position: fixed;
+    bottom: -40px;
+    pointer-events: none;
+    opacity: 0.85;
+    animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-125vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Sparkles styling */
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    transition: opacity 2s, transform 2s;
+}
+
+/* ==========================================
+   Responsive Adaptability (Mobile Viewports)
+========================================== */
+@media(max-width:480px) {
+    .glass {
+        width: 92vw;
+        padding: 26px 20px;
+    }
+    .glass h1 { font-size: 34px; }
+    .glass h2 { font-size: 24px; }
+    .glass p { font-size: 15px; }
+    button { padding: 14px; font-size: 15px; }
+    #slideshowImg { max-height: 50vh; }
+    .fade-in-line { font-size: 16px; }
+}
