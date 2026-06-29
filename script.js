@@ -58,20 +58,28 @@ function nextPage(){
 
         showPage(currentPage);
 
+        // Start music automatically after the first click
         if(currentPage === 1 && !musicPlaying){
 
-            bgMusic.play();
+            bgMusic.currentTime = 20;
 
-            musicPlaying = true;
+            bgMusic.play().then(()=>{
 
-            musicButton.innerHTML = "⏸️";
+                musicPlaying = true;
+
+                musicButton.innerHTML = "⏸️";
+
+            }).catch(err=>{
+
+                console.log(err);
+
+            });
 
         }
 
     }
 
 }
-
 /* =======================================
    Progress Bar
 ======================================= */
@@ -212,14 +220,17 @@ yesButton2.addEventListener(
 
 );
 
-
 /* ==========================
    MUSIC PLAYER
 ========================== */
 
 const bgMusic = document.getElementById("bgMusic");
 
+bgMusic.preload = "auto";
+
 let musicPlaying = false;
+
+musicButton.innerHTML = "🎵";
 
 musicButton.addEventListener("click", async () => {
 
@@ -229,17 +240,23 @@ musicButton.addEventListener("click", async () => {
 
             bgMusic.pause();
 
-            musicPlaying=false;
+            musicPlaying = false;
 
-            musicButton.innerHTML="🎵";
+            musicButton.innerHTML = "🎵";
 
         }else{
 
+            if(bgMusic.currentTime < 20){
+
+                bgMusic.currentTime = 20;
+
+            }
+
             await bgMusic.play();
 
-            musicPlaying=true;
+            musicPlaying = true;
 
-            musicButton.innerHTML="⏸️";
+            musicButton.innerHTML = "⏸️";
 
         }
 
@@ -247,12 +264,9 @@ musicButton.addEventListener("click", async () => {
 
         console.error(err);
 
-        alert("Music couldn't start: " + err.message);
-
     }
 
 });
-
 /* =======================================
    Page Transition
 ======================================= */
