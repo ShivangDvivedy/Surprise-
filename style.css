@@ -134,11 +134,15 @@ transition:.5s;
 
 .page{
 
-position:absolute;
+position:fixed;
 
-width:100%;
+top:0;
 
-height:100%;
+left:0;
+
+width:100vw;
+
+height:100vh;
 
 display:none;
 
@@ -151,7 +155,6 @@ padding:25px;
 z-index:10;
 
 }
-
 .page.active{
 
 display:flex;
