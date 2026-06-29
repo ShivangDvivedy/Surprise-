@@ -226,48 +226,54 @@ yesButton2.addEventListener(
 
 const bgMusic = document.getElementById("bgMusic");
 
-bgMusic.preload = "auto";
-
 let musicPlaying = false;
 
-musicButton.innerHTML = "🎵";
+// Wait until enough of the song has loaded
+bgMusic.addEventListener("loadedmetadata", () => {
+    console.log("Song duration:", bgMusic.duration);
+});
 
-musicButton.addEventListener("click", async () => {
+async function playMusicFrom20() {
 
-    try{
+    try {
 
-        if(musicPlaying){
+        // Pause first
+        bgMusic.pause();
 
-            bgMusic.pause();
+        // Jump to 20 seconds
+        bgMusic.currentTime = 20;
 
-            musicPlaying = false;
+        // Play
+        await bgMusic.play();
 
-            musicButton.innerHTML = "🎵";
+        musicPlaying = true;
+        musicButton.innerHTML = "⏸️";
 
-        }else{
+    } catch (err) {
 
-            if(bgMusic.currentTime < 20){
-
-                bgMusic.currentTime = 20;
-
-            }
-
-            await bgMusic.play();
-
-            musicPlaying = true;
-
-            musicButton.innerHTML = "⏸️";
-
-        }
-
-    }catch(err){
-
-        console.error(err);
+        console.log(err);
 
     }
 
-});
-/* =======================================
+}
+
+musicButton.addEventListener("click", () => {
+
+    if (musicPlaying) {
+
+        bgMusic.pause();
+
+        musicPlaying = false;
+
+        musicButton.innerHTML = "🎵";
+
+    } else {
+
+        playMusicFrom20();
+
+    }
+
+});/* =======================================
    Page Transition
 ======================================= */
 
