@@ -221,23 +221,33 @@ const bgMusic = document.getElementById("bgMusic");
 
 let musicPlaying = false;
 
-musicButton.addEventListener("click", () => {
+musicButton.addEventListener("click", async () => {
 
-    if (musicPlaying) {
+    try{
 
-        bgMusic.pause();
+        if(musicPlaying){
 
-        musicPlaying = false;
+            bgMusic.pause();
 
-        musicButton.innerHTML = "🎵";
+            musicPlaying=false;
 
-    } else {
+            musicButton.innerHTML="🎵";
 
-        bgMusic.play();
+        }else{
 
-        musicPlaying = true;
+            await bgMusic.play();
 
-        musicButton.innerHTML = "⏸️";
+            musicPlaying=true;
+
+            musicButton.innerHTML="⏸️";
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+
+        alert("Music couldn't start: " + err.message);
 
     }
 
