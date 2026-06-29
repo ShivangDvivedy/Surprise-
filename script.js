@@ -52,13 +52,23 @@ updateProgress();
 
 function nextPage(){
 
-if(currentPage<pages.length-1){
+    if(currentPage < pages.length-1){
 
-currentPage++;
+        currentPage++;
 
-showPage(currentPage);
+        showPage(currentPage);
 
-}
+        if(currentPage === 1 && !musicPlaying){
+
+            bgMusic.play();
+
+            musicPlaying = true;
+
+            musicButton.innerHTML = "⏸️";
+
+        }
+
+    }
 
 }
 
@@ -203,38 +213,35 @@ yesButton2.addEventListener(
 );
 
 
-/* =======================================
-   Music Button
-======================================= */
+/* ==========================
+   MUSIC PLAYER
+========================== */
+
+const bgMusic = document.getElementById("bgMusic");
 
 let musicPlaying = false;
 
-musicButton.addEventListener(
+musicButton.addEventListener("click", () => {
 
-    "click",
+    if (musicPlaying) {
 
-    () => {
+        bgMusic.pause();
 
-        if (musicPlaying) {
+        musicPlaying = false;
 
-            musicButton.innerHTML = "🎵";
+        musicButton.innerHTML = "🎵";
 
-            musicPlaying = false;
+    } else {
 
-        }
+        bgMusic.play();
 
-        else {
+        musicPlaying = true;
 
-            musicButton.innerHTML = "🔇";
-
-            musicPlaying = true;
-
-        }
+        musicButton.innerHTML = "⏸️";
 
     }
 
-);
-
+});
 
 /* =======================================
    Page Transition
